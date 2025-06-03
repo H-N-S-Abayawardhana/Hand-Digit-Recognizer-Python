@@ -181,7 +181,7 @@ class ImprovedHandDetector:
         self.count_history[self.history_index] = count
         self.history_index = (self.history_index + 1) % self.history_length
         
-        # Use mode (most common value) for stabilization
+        # Use mode for stabilization
         counts = {}
         for c in self.count_history:
             counts[c] = counts.get(c, 0) + 1
