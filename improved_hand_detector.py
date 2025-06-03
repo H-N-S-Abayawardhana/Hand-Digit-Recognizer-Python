@@ -16,7 +16,7 @@ class ImprovedHandDetector:
         # Background subtractor
         self.bg_subtractor = cv2.createBackgroundSubtractorMOG2(history=500, varThreshold=25, detectShadows=False)
         
-        # Color ranges for skin detection in YCrCb space (works better than HSV for skin)
+        # Color ranges for skin detection in YCrCb space
         # These ranges can be adjusted based on different skin tones
         self.lower_skin = np.array([0, 133, 77], dtype=np.uint8)
         self.upper_skin = np.array([235, 173, 127], dtype=np.uint8)
@@ -127,7 +127,7 @@ class ImprovedHandDetector:
             if angle < 90 and d/256.0 > 10:  # d is scaled by 256 in OpenCV
                 finger_valleys.append((start, end, far))
         
-        # Find potential fingertips (convex points between valleys)
+        # Find potential fingertips
         # Convert to contour format for easier processing
         cnt_array = np.array(contour).reshape((-1, 2))
         
